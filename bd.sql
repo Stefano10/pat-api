@@ -7,122 +7,62 @@ SET time_zone = "+00:00";
 --
 -- --------------------------------------------------------
 
-CREATE SCHEMA IF NOT EXISTS `processodesoftware` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
-USE `processodesoftware` ;
+CREATE SCHEMA IF NOT EXISTS `dbpat` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE `dbpat` ;
 --
 -- DROP TABLE IF EXISTS `users` ;
 --
 -- Estrutura da tabela `users`
 --
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `idade` int(11) NOT NULL,
-  `senha` varchar(256) NOT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE IF NOT EXISTS `usuario` (
+  'idUsuario' INT(11) AUTO_INCREMENT PRIMARY KEY, 
+  'nome' VARCHAR(50), 
+  'login' VARCHAR(50) PRIMARY KEY, 
+  'senha' VARCHAR(50), 
+  'nvacesso' INT(1)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 --
--- DROP TABLE IF EXISTS `users_info` ;
---
--- Estrutura da tabela `users_info`
---
-CREATE TABLE IF NOT EXISTS `users_info` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `facebook` varchar(100) DEFAULT NULL,
-  `whatsapp` bigint(11) DEFAULT NULL,
-  `id_user` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_users_info_user_idx`
-    FOREIGN KEY (`id_user`)
-    REFERENCES `processodesoftware`.`users` (`id`)
-  ON DELETE CASCADE -- Nao existe mais o usuario que referencia esse objeto
-  ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ CREATE TABLE IF NOT EXISTS 'protocolo'(
+   'idProtocolo' INT(30) AUTO_INCREMENT PRIMARY KEY, 
+   'origem' VARCHAR(50), 
+   'destino' VARCHAR(50), 
+   'tomboOUserial' VARCHAR(30), 
+   'data' DATE, 
+   'idUsuario' int(11) NOT NULL,
+    FOREIGN KEY (`idUsuario`)
+    REFERENCES `dbpat`.`usuario` (`idUsuario`)
+ )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ 
+ 
+ CREATE TABLE IF NOT EXISTS cautela (
+   'idCautela' INT(30) AUTO_INCREMENT PRIMARY KEY, 
+   'data_inicio' DATE, 
+   'data_final' DATE, 
+   'idUsuario' int(11) NOT NULL,
+    FOREIGN KEY (`idUsuario`)
+    REFERENCES `dbpat`.`usuario` (`idUsuario`),
+   'cautelado' VARCHAR(50),
+    FOREIGN KEY (`cautelado`)
+    REFERENCES `dbpat`.`usuario` (`login`),
+  )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  
+   CREATE TABLE IF NOT EXISTS objeto ( 
+     'id' INT(15) AUTO_INCREMENT PRIMARY KEY, 
+     'tombo' INT(10) PRIMARY KEY, 
+     'serial' VARCHAR(30) PRIMARY KEY, 
+     'local' VARCHAR(50), 
+     'descricao' VARCHAR(50), 
+     'situacao' INT(2), 
+     )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `skills` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE IF NOT EXISTS `user_interests` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_user` int(11) NOT NULL,
-  `id_skill` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
-  CONSTRAINT `fk_ui_user_idx`
-    FOREIGN KEY (`id_user`)
-    REFERENCES `processodesoftware`.`users` (`id`)
-    ON DELETE CASCADE -- Nao existe mais o usuario que referencia esse objeto
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_ui_skill_idx`
-    FOREIGN KEY (`id_skill`)
-    REFERENCES `processodesoftware`.`skills` (`id`)
-    ON DELETE CASCADE -- Nao existe mais o skill que o usuario tinha
-    ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE IF NOT EXISTS `user_skills` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_user` int(11) NOT NULL,
-  `id_skill` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
-  CONSTRAINT `fk_us_user_idx`
-    FOREIGN KEY (`id_user`)
-    REFERENCES `processodesoftware`.`users` (`id`)
-    ON DELETE CASCADE -- Nao existe mais o usuario que referencia esse objeto
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_us_skill_idx`
-    FOREIGN KEY (`id_skill`)
-    REFERENCES `processodesoftware`.`skills` (`id`)
-    ON DELETE CASCADE -- Nao existe mais o skill que o usuario tinha
-    ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE IF NOT EXISTS `user_match` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_user_not` int(11) NOT NULL,
-  `id_user_has` int(11) NOT NULL,
-  `id_skill` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
-  CONSTRAINT `fk_um_user_not_idx`
-    FOREIGN KEY (`id_user_not`)
-    REFERENCES `processodesoftware`.`users` (`id`)
-    ON DELETE CASCADE -- Nao existe mais o usuario que referencia esse objeto
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_um_user_has_idx`
-    FOREIGN KEY (`id_user_has`)
-    REFERENCES `processodesoftware`.`users` (`id`)
-    ON DELETE CASCADE -- Nao existe mais o usuario que referencia esse objeto
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_um_skill_idx`
-    FOREIGN KEY (`id_skill`)
-    REFERENCES `processodesoftware`.`skills` (`id`)
-    ON DELETE CASCADE -- Nao existe mais o skill que o usuario tinha
-    ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `pictures` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `filename` varchar(100) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_pictures_user_idx`
-    FOREIGN KEY (`id_user`)
-    REFERENCES `processodesoftware`.`users` (`id`)
+  'id' int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  'filename' varchar(100) NOT NULL,
+  'idObjeto' int(11) NOT NULL,
+  FOREIGN KEY ('idObjeto')
+  REFERENCES 'dbpat'.'objeto' ('id')
   ON DELETE CASCADE -- Nao existe mais o usuario que referencia esse objeto
   ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Alterações das tabelas para não quebrar nada.
-ALTER TABLE users
-ADD UNIQUE INDEX `email_UNIQUE` (`email` ASC);
-ALTER TABLE users
-ADD UNIQUE INDEX `id_UNIQUE` (`id` ASC);
-ALTER TABLE users_info
-ADD UNIQUE INDEX `id_UNIQUE` (`id` ASC);
