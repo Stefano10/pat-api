@@ -14,7 +14,7 @@ USE `dbpat` ;
 --
 -- Estrutura da tabela `users`
 --
-CREATE TABLE IF NOT EXISTS `usuario` (
+CREATE TABLE IF NOT EXISTS 'usuario' (
   'idUsuario' INT(11) AUTO_INCREMENT PRIMARY KEY, 
   'nome' VARCHAR(50), 
   'login' VARCHAR(50) PRIMARY KEY, 
