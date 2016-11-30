@@ -50,6 +50,10 @@ CREATE TABLE IF NOT EXISTS `usuario` (
     CONSTRAINT `fk_cautela`
     FOREIGN KEY (`cautelado`)
     REFERENCES `dbpat`.`usuario` (`idUsuario`)
+    `idObjeto` int(11) NOT NULL,
+    CONSTRAINT `fk_objeto`
+    FOREIGN KEY (`idObjeto`)
+    REFERENCES `dbpat`.`objeto` (`idObjeto`)
   )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
  CREATE TABLE IF NOT EXISTS `objeto` (

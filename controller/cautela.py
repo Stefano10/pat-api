@@ -16,21 +16,44 @@ from model.usuario import UsuarioModel
 # other things) that you think in terms of resources and state
 # transitions, which map to HTTP verbs.
 
-class cautela(object):
+
+class Cautelas(object):
+
     def on_get(self, req, resp):
 
         db = MySQLdb.connect (host = "localhost",user = "pds",passwd = "123456",db = "dbpat")
         cursor = db.cursor()
         resp.status = falcon.HTTP_200  # Ok!
         #Executa a query
-        cursor.execute("SELECT  idUsuario, data_inicio, data_final, IdCautela, cautelado FROM cautela")
+        cursor.execute("SELECT  idUsuario, data_inicio, data_final, IdCautela, cautelado, idObjeto FROM cautela")
         #Recebe todos os resultados
         query = cursor.fetchall()
         #Cria uma lista guardar os dados convertidos
         queryObjects = []
         #Converte
         for q in query:
-                cautela = CautelaModel(q[0], q[1], q[2], q[3], q[4])
+                cautela = CautelaModel(q[0], q[1], q[2], q[3], q[4], q[5] )
+                queryObjects.append(cautela.__dict__)
+        resp.body = json.dumps(queryObjects)
+        db.close()
+
+
+class Cautela(object):
+    def on_get(self, req, resp, id):
+
+        db = MySQLdb.connect (host = "localhost",user = "pds",passwd = "123456",db = "dbpat")
+        cursor = db.cursor()
+        resp.status = falcon.HTTP_200  # Ok!
+        #Executa a query
+        sql = "SELECT  idUsuario, data_inicio, data_final, IdCautela, cautelado, idObjeto FROM cautela WHERE idCautela = %s" % (id)
+        cursor.execute()
+        #Recebe todos os resultados
+        query = cursor.fetchall(sql)
+        #Cria uma lista guardar os dados convertidos
+        queryObjects = []
+        #Converte
+        for q in query:
+                cautela = CautelaModel(q[0], q[1], q[2], q[3], q[4], q[5] )
                 queryObjects.append(cautela.__dict__)
         resp.body = json.dumps(queryObjects)
         db.close()
@@ -40,10 +63,10 @@ class cautela(object):
         cursor = db.cursor()
         body = req.stream.read()
         newusersql = self.mountCautela(body)
-        equery = "INSERT INTO cautela (idUsuario, data_inicio, data_final, cautelado) VALUES (%s, %s, %s, %s, %s)"
+        equery = "INSERT INTO cautela (idUsuario, data_inicio, data_final, cautelado, idObjeto) VALUES (%s, %s, %s, %s, %s, %s)"
 
         try:
-            cursor.execute(equery, (newusersql['idUsuario'], newusersql['data_inicio'],newusersql['data_final'], newusersql['cautelado'], ))
+            cursor.execute(equery, (newusersql['idUsuario'], newusersql['data_inicio'],newusersql['data_final'], newusersql['cautelado'], newusersql['idObjeto'],))
             cursor.execute("SELECT LAST_INSERT_ID() FROM cautela");
             result = {'id': int(cursor.fetchone()[0])}
             resp.body = json.dumps(result)
@@ -67,7 +90,7 @@ class Cautela_Usuario(object):
         resp.status = falcon.HTTP_200  # Ok!
         id = int(id)
         #Executa a query
-        sql = "SELECT idUsuario, data_inicio, data_final, IdCautela, cautelado FROM cautela WHERE idUsuario = %s" % (idUsuario)
+        sql = "SELECT idUsuario, data_inicio, data_final, IdCautela, cautelado, idObjeto FROM cautela WHERE idUsuario = %s" % (idUsuario)
         cursor.execute(sql)
         #Recebe todos os resultados
         query = cursor.fetchall()
@@ -75,7 +98,7 @@ class Cautela_Usuario(object):
         queryObjects = []
         #Converte
         for q in query:
-                    cautela = CautelaModel(q[0], q[1], q[2], q[3], q[4])
+                    cautela = CautelaModel(q[0], q[1], q[2], q[3], q[4], q[5])
                     queryObjects.append(cautela.__dict__)
 
         resp.body = json.dumps(queryObjects)
@@ -89,7 +112,7 @@ class Cautela_Cautelado(object):
         resp.status = falcon.HTTP_200  # Ok!
         id = int(id)
         #Executa a query
-        sql = "SELECT  idUsuario, data_inicio, data_final, IdCautela, cautelado FROM cautela WHERE cautelado = %s" % (cautelado)
+        sql = "SELECT  idUsuario, data_inicio, data_final, IdCautela, cautelado, idObjeto FROM cautela WHERE cautelado = %s" % (cautelado)
         cursor.execute(sql)
         #Recebe todos os resultados
         query = cursor.fetchall()
@@ -97,8 +120,32 @@ class Cautela_Cautelado(object):
         queryObjects = []
         #Converte
         for q in query:
-                    cautela = CautelaModel(q[0], q[1], q[2], q[3], q[4])
+                    cautela = CautelaModel(q[0], q[1], q[2], q[3], q[4], q[5])
                     queryObjects.append(cautela.__dict__)
 
         resp.body = json.dumps(queryObjects)
         db.close()
+
+
+class Cautela_Objeto(object):
+    def on_get(self, req, resp, idObjeto):
+        #GET EM TODAS AS CAUTELAS DE UM CAUTELADO
+        db = MySQLdb.connect (host = "localhost",user = "pds",passwd = "123456",db = "dbpat")
+        cursor = db.cursor()
+        resp.status = falcon.HTTP_200  # Ok!
+        id = int(id)
+        #Executa a query
+        sql = "SELECT  idUsuario, data_inicio, data_final, IdCautela, cautelado, idObjeto FROM cautela WHERE idObjeto = %s" % (idObjeto)
+        cursor.execute(sql)
+        #Recebe todos os resultados
+        query = cursor.fetchall()
+        #Cria uma lista guardar os dados convertidos
+        queryObjects = []
+        #Converte
+        for q in query:
+                    cautela = CautelaModel(q[0], q[1], q[2], q[3], q[4], q[5])
+                    queryObjects.append(cautela.__dict__)
+
+        resp.body = json.dumps(queryObjects)
+        db.close()
+

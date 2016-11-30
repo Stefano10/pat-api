@@ -15,23 +15,38 @@ from controller.cautela import *
 # falcon.API instances are callable WSGI apps
 app = falcon.API()
 
-# things will handle all requests to the '/things' URL path
+#USUARIOS
 app.add_route('/pat/usuarios', Usuarios())
 app.add_route('/pat/usuario', Usuario())
 app.add_route('/pat/usuario/{id}', Usuario())
 app.add_route('/pat/usuario/email/{email}', UsuarioEmail())
 app.add_route('/pat/login', Login())
 
+#OBJETOS
 app.add_route('/pat/objetos', Objetos())
 app.add_route('/pat/objeto', Objeto())
 app.add_route('/pat/objeto/{id}', Objeto())
 app.add_route('/pat/objeto/tombo/{id}', ObjetoTombo())
 app.add_route('/pat/objeto/serial/{id}', ObjetoSerial())
 
-#FALTA IMAGEM
+#IMAGEM
+app.add_route('/pat/imagem', Imagem())
+app.add_route('/pat/imagem/{id}', Imagem())
 
-#FALTA CAUTELA
+#CAUTELA
+app.add_route('/pat/cautelas', Cautelas())
+app.add_route('/pat/cautela', Cautela())
+app.add_route('/pat/cautela/{id}', Cautela())
+app.add_route('/pat/cautela/usuario/{id}', Cautela_Usuario())
+app.add_route('/pat/cautela/cautelado/{id}', Cautela_Cautelado())
+app.add_route('/pat/cautela/objeto/{id}', Cautela_Objeto())
 
-#FALTA PROTOCOLO
+#PROTOCOLO
+app.add_route('/pat/protocolos', Protocolos())
+app.add_route('/pat/protocolo', Protocolo())
+app.add_route('/pat/protocolo/{id}', Protocolo())
+app.add_route('/pat/protocolo/objeto/{id}', Protocolo_Objeto())
+app.add_route('/pat/protocolo/usuario/{id}', Protocolo_Usuario())
+
 
 
