@@ -24,22 +24,22 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 
 
  CREATE TABLE IF NOT EXISTS `protocolo`(
-   `idProtocolo` INT(30) AUTO_INCREMENT PRIMARY KEY,
+   `idProtocolo` INT(15) AUTO_INCREMENT PRIMARY KEY,
    `origem` VARCHAR(50),
    `destino` VARCHAR(50),
-   `idObjeto` INT(15) OT NULL,
-    CONSTRAINT `fk_protocolo_objeto`
+   `idObjeto` INT(15),
+    CONSTRAINT `fk_protoc_object`
     FOREIGN KEY (`idObjeto`)
-    REFERENCES `dbpat`.`objeto` (`idObjeto`),
+    REFERENCES `dbpat`.`objeto` (`id`),
    `data` DATE,
-   `idUsuario` int(11) NOT NULL,
-   CONSTRAINT `fk_protocolo_usuario`
+   `idUsuario` INT(11),
+    CONSTRAINT `fk_proto_usuario`
     FOREIGN KEY (`idUsuario`)
     REFERENCES `dbpat`.`usuario` (`idUsuario`)
  )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
  CREATE TABLE IF NOT EXISTS `cautela` (
-   `idCautela` INT(30) AUTO_INCREMENT PRIMARY KEY,
+   `idCautela` INT(15) AUTO_INCREMENT PRIMARY KEY,
    `data_inicio` DATE,
    `data_final` DATE,
    `idUsuario` int(11) NOT NULL,
@@ -49,11 +49,11 @@ CREATE TABLE IF NOT EXISTS `usuario` (
    `cautelado` int(11) NOT NULL,
     CONSTRAINT `fk_cautela`
     FOREIGN KEY (`cautelado`)
-    REFERENCES `dbpat`.`usuario` (`idUsuario`)
-    `idObjeto` int(11) NOT NULL,
-    CONSTRAINT `fk_objeto`
+    REFERENCES `dbpat`.`usuario` (`idUsuario`),
+    `idObjeto` int(15) NOT NULL,
+    CONSTRAINT `fk_objeto1`
     FOREIGN KEY (`idObjeto`)
-    REFERENCES `dbpat`.`objeto` (`idObjeto`)
+    REFERENCES `dbpat`.`objeto` (`id`)
   )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
  CREATE TABLE IF NOT EXISTS `objeto` (
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 CREATE TABLE IF NOT EXISTS `pictures` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `filename` varchar(100) NOT NULL,
-  `idObjeto` int(11) NOT NULL,
+  `idObjeto` int(15) NOT NULL,
   CONSTRAINT `fk_picture_object`
   FOREIGN KEY (`idObjeto`)
   REFERENCES `dbpat`.`objeto` (`id`)
