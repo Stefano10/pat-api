@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_busca"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Buscar" />
+        <item
+            android:id="@+id/nav_cadastrar"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Cadastrar" />
+        <item
+            android:id="@+id/nav_cautela"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Cadastrar Cautela" />
+        <item
+            android:id="@+id/nav_ListarCautelas"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Listar Cautelas" />
+        <item
+            android:id="@+id/nav_Listar"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Listar Objetos" />
+        <item
+            android:id="@+id/nav_Protocolo"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Protocolo" />
+    </group>
+
+
+
+</menu>

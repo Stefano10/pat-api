@@ -1,0 +1,53 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.ufrn.imd.fragmentsexample.BuscaFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_menu_camera"
+            android:id="@+id/cameraBuscar" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/tomboSerial"
+            android:hint="Serial ou Tombo" />
+
+        <Button
+            android:text="Buscar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buscarbt"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:background="@android:color/holo_blue_light" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="166dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/descricaoV"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+</FrameLayout>

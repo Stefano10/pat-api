@@ -1,0 +1,55 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.ufrn.imd.fragmentsexample.Cadastro">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="386dp"
+        android:layout_height="302dp"
+        android:layout_gravity="left|center_vertical">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tomboCad"
+            android:hint="Tombo" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/serialCad"
+            android:hint="Serial" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/localCad"
+            android:hint="Local" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/descricaoCad"
+            android:hint="Descrição" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/situacaoCad"
+            android:hint="Situação" />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:text="Cadastrar"
+        android:id="@+id/cadastrarBT"
+        android:layout_gravity="center_horizontal|bottom"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:elevation="0dp" />
+
+</FrameLayout>

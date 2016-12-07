@@ -1,0 +1,30 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.ufrn.imd.fragmentsexample.ResultadoBusca">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:layout_width="94dp"
+        android:layout_height="94dp"
+        android:id="@+id/fotoObjeto"
+        android:layout_gravity="center_horizontal|top"
+        android:src="@android:drawable/ic_menu_gallery" />
+
+    <Button
+        android:layout_width="251dp"
+        android:layout_height="wrap_content"
+        android:text="Salvar"
+        android:id="@+id/salvarBT"
+        android:layout_gravity="center_horizontal|bottom"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:background="@color/colorAccent" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="98dp"
+        android:layout_height="38dp"
+        android:id="@+id/resultadoObjeto" />
+
+</FrameLayout>

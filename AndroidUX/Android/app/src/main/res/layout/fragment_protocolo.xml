@@ -1,0 +1,53 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.ufrn.imd.fragmentsexample.ProtocoloFragment">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/origemID"
+            android:hint="Origem" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/destinoID"
+            android:hint="Destino" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/idObjetoProtocolo"
+            android:hint="ID Objeto" />
+
+        <DatePicker
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            android:id="@+id/dataProtocolo"
+            android:layout_weight="0.84" />
+
+        <Button
+            android:text="CADASTRAR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cadastrarProtBT"
+            style="@style/Widget.AppCompat.Button.Colored" />
+
+    </LinearLayout>
+
+</FrameLayout>

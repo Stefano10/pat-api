@@ -1,0 +1,61 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.ufrn.imd.fragmentsexample.CautelaFragment">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/idCautelado"
+            android:hint="ID do Cautelado" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/idObjetoCautela"
+            android:hint="ID Objeto" />
+
+        <TextView
+            android:text="Data de Início:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView" />
+
+        <DatePicker
+            android:layout_width="match_parent"
+            android:layout_height="149dp"
+            android:id="@+id/dataInicio" />
+
+        <TextView
+            android:text="Data Final:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3" />
+
+        <DatePicker
+            android:layout_width="match_parent"
+            android:layout_height="136dp"
+            android:id="@+id/dataFinal"
+            android:layout_weight="0.23" />
+
+        <Button
+            android:text="CADASTRAR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cautelaBT"
+            style="@style/Widget.AppCompat.Button.Colored" />
+
+    </LinearLayout>
+</FrameLayout>

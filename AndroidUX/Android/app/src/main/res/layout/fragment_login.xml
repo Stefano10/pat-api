@@ -1,0 +1,44 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.ufrn.imd.fragmentsexample.LoginFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="247dp"
+            app:srcCompat="@drawable/logo"
+            android:id="@+id/imageView2" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/loginID"
+            android:hint="Login" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/senhaID"
+            android:hint="Senha" />
+
+        <Button
+            android:text="LOGAR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/logarBtn"
+            style="@style/Widget.AppCompat.Button.Colored" />
+
+    </LinearLayout>
+</FrameLayout>
