@@ -28,6 +28,7 @@ app.add_route('/pat/objeto', Objeto())
 app.add_route('/pat/objeto/{id}', Objeto())
 app.add_route('/pat/objeto/tombo/{id}', ObjetoTombo())
 app.add_route('/pat/objeto/serial/{id}', ObjetoSerial())
+app.add_route('/pat/objeto/local/{local}', ObjetoLocal())
 
 #IMAGEM
 app.add_route('/pat/imagem', Imagem())
