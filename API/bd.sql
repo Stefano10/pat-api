@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
     CONSTRAINT `fk_protoc_object`
     FOREIGN KEY (`idObjeto`)
     REFERENCES `dbpat`.`objeto` (`id`),
-   `data` DATE,
+   `data` VARCHAR(10),
    `idUsuario` INT(11),
     CONSTRAINT `fk_proto_usuario`
     FOREIGN KEY (`idUsuario`)
@@ -40,8 +40,8 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 
  CREATE TABLE IF NOT EXISTS `cautela` (
    `idCautela` INT(15) AUTO_INCREMENT PRIMARY KEY,
-   `data_inicio` DATE,
-   `data_final` DATE,
+   `data_inicio` VARCHAR(10),
+   `data_final` VARCHAR(10),
    `idUsuario` int(11) NOT NULL,
     CONSTRAINT `fk_cautela_usuario`
     FOREIGN KEY (`idUsuario`)

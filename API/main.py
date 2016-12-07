@@ -19,15 +19,16 @@ app = falcon.API()
 app.add_route('/pat/usuarios', Usuarios())
 app.add_route('/pat/usuario', Usuario())
 app.add_route('/pat/usuario/{id}', Usuario())
-app.add_route('/pat/usuario/email/{email}', UsuarioEmail())
+app.add_route('/pat/usuario/login/{login}', UsuarioEmail())
 app.add_route('/pat/login', Login())
 
 #OBJETOS
 app.add_route('/pat/objetos', Objetos())
 app.add_route('/pat/objeto', Objeto())
 app.add_route('/pat/objeto/{id}', Objeto())
-app.add_route('/pat/objeto/tombo/{id}', ObjetoTombo())
-app.add_route('/pat/objeto/serial/{id}', ObjetoSerial())
+app.add_route('/pat/objeto/tombo/{tombo}', ObjetoTombo())
+app.add_route('/pat/objeto/serial/{serial}', ObjetoSerial())
+app.add_route('/pat/objeto/local/{local}', ObjetoLocal())
 
 #IMAGEM
 app.add_route('/pat/imagem', Imagem())

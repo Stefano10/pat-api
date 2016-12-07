@@ -22,7 +22,7 @@ class Usuarios(object):
 		cursor = db.cursor()
 		resp.status = falcon.HTTP_200  # Ok!
 		#Executa a query
-		cursor.execute("SELECT idUsuario, name, email, senha, nvacesso FROM usuario")
+		cursor.execute("SELECT idUsuario, name, login, senha, nvacesso FROM usuario")
 		#Recebe todos os resultados
 		query = cursor.fetchall()
 		#Cria uma lista guardar os dados convertidos
@@ -42,7 +42,7 @@ class Usuario(object):
 		resp.status = falcon.HTTP_200  # Ok!
 		id = int(id)
 		#Executa a query
-		sql = "SELECT idUsuario, name, email, senha, nvacesso FROM usuario WHERE idUsuario = %d" % (idUsuario)
+		sql = "SELECT idUsuario, name, login, senha, nvacesso FROM usuario WHERE idUsuario = %d" % (idUsuario)
 		cursor.execute(sql)
 		#Recebe todos os resultados
 		query = cursor.fetchall()

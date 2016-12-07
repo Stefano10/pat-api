@@ -37,7 +37,6 @@ class Cautelas(object):
         resp.body = json.dumps(queryObjects)
         db.close()
 
-
 class Cautela(object):
     def on_get(self, req, resp, id):
 
@@ -63,7 +62,7 @@ class Cautela(object):
         cursor = db.cursor()
         body = req.stream.read()
         newusersql = self.mountCautela(body)
-        equery = "INSERT INTO cautela (idUsuario, data_inicio, data_final, cautelado, idObjeto) VALUES (%s, %s, %s, %s, %s, %s)"
+        equery = "INSERT INTO cautela (idUsuario, data_inicio, data_final, cautelado, idObjeto) VALUES (%s, %s, %s, %s, %s)"
 
         try:
             cursor.execute(equery, (newusersql['idUsuario'], newusersql['data_inicio'],newusersql['data_final'], newusersql['cautelado'], newusersql['idObjeto'],))
